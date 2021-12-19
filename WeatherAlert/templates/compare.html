@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/compare/compare.css' %}"/>
+
+     <script src="{% static 'js/compare.js' %}" defer></script>
+
+    <title>Compare</title>
+  </head>
+  <body>
+    <h1 class="title">Compare Weather</h1>
+    <table class="table" cellpadding="15" cellspacing="10">
+      <thead>
+        <th>Location</th>
+        <th>Temperature</th>
+        <th>Wind Speed</th>
+        <th>Wind Gusts</th>
+      </thead>
+
+      <tbody class="table__body">
+        <tr class="table__row">
+          <td>
+            <input
+              type="text"
+              placeholder="Search Location"
+              class="input__first"
+            />
+          </td>
+          <td id="first_temp"></td>
+          <td id="first_wind_speed"></td>
+          <td id="first_wind_gust"></td>
+        </tr>
+        <tr>
+          <td>
+            <input
+              type="text"
+              placeholder="Search Location"
+              class="input__second"
+            />
+          </td>
+          <td id="second_temp"></td>
+          <td id="second_wind_speed"></td>
+          <td id="second_wind_gust"></td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
+

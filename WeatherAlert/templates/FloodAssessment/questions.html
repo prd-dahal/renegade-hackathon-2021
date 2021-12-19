@@ -1,0 +1,105 @@
+
+{%load static%}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static 'js/FloodAssessment/geolocationapi.js' %}"></script>
+<style href="{% static 'css/FloodAssessment/question.css'%}"></style> 
+
+<style>
+.questionDiv {
+    padding-top: 3%!important;
+    font-family:"poppins"
+}
+.questiontitle{
+    padding-bottom:1%;
+    font-size:2rem;
+    font-family:"poppins"
+}
+
+</style>
+
+
+<div class="row">
+
+         <h1 class="container col-6">Flood Assessment App</h1>
+        <a role="button" href="{%url 'dashboard'%}" class="btn btn-primary col-6 " style="margin-left:8%">Dashboard</a>
+
+    
+</div>
+
+<form id = "floodAssessment" class="form-inline jumbotron container" method='POST' action={% url 'FloodAssessment:machineLearning' %}>
+    {%csrf_token%}
+    <div class="form-group">
+        <label for ="country">Country </label>
+        <input value= "" id="country" name="country" class="form-control" >
+    </div>
+    <div class="form-group">
+         <label for = 'city'>City </label> 
+        <input value = "" id ="city" name="city" class="form-control" >
+    </div>
+
+   
+    <input value="" type="hidden" name="risk_factor" id='risk_factor' >
+    <a onClick=getLocation() class="btn btn-info" role="button">Get Location</a>
+    
+    <div class="questionDiv" style="display:none">
+    <div class="questiontitle"></div>
+        <a onClick="handleNextQuestion('yes')" role="button" class="btn btn-warning">Yes</a>
+        <a onClick="handleNextQuestion('no')" role="button" class="btn btn-primary">No</a>
+    </div>
+    
+    <button class="submit" type="submit" style="display:none">Submit</button> 
+</form>
+
+{% if risk_factor%}
+    <div class="jumbotron container">
+        <h2>You are at {{risk_value}} risk. Your Risk Factor is {{risk_factor}}</h2>
+        
+    </div>
+{%endif%}
+<div class="answer" style="display:none"></div>
+
+
+<script>
+    var thisquestion = "A"
+function handleNextQuestion(s){
+    $.getJSON("{% static 'js/FloodAssessment/questions.json'%}", function(jd){
+        if(s=='yes'){
+            thisquestion = jd.config[thisquestion][0]
+             
+        }else{
+            thisquestion = jd.config[thisquestion][1] 
+        }
+        
+
+        if (!parseFloat(thisquestion)){
+            
+            jd.questions.forEach((data)=>{
+                if (data.name == thisquestion){
+                    $(".questiontitle").html(data.question)
+                }
+            })        
+        }
+        else{
+            console.log(thisquestion)
+            $(".questionDiv").hide()
+            $(".answer").css('display','block')
+            document.getElementById("risk_factor").value  = parseFloat(thisquestion)
+            $("#floodAssessment").submit()
+        }
+    })
+}
+$(document).ready(()=>{
+    
+    $.getJSON("{% static 'js/FloodAssessment/questions.json'%}", function (jd){
+        $(".questionDiv").css("display","block")
+        $(".questiontitle").append(jd.questions[0].question)
+        
+    })
+})
+</script>
+

@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing</title>
+
+
+    <!--CSS-->
+    <link rel="stylesheet" href="{% static 'css/landing/landing.css' %}" type="text/css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="{% static 'landing.js' %}" defer></script>
+  </head>
+  <body>
+    <header class="header__container">
+      <nav class="navbar">
+        <div class="logo">Weas</div>
+        <ul class="links">
+          <a href="{% url 'home' %}"><li >Home</li>
+
+          <a href="{% url 'register' %}"><li class="link"><button class="signup">Sign Up</button></li></a>
+        </ul>
+      </nav>
+      <div style="margin-top:60px;">
+
+      </div>
+
+        {% block content %}
+
+        {% endblock %}
+
+      <footer class="footer__container">
+      2021 Copyright All Rights Reserved
+    </footer>
+  </body>
+</html>

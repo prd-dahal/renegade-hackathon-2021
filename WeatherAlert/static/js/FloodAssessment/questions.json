@@ -1,0 +1,27 @@
+{
+    "questions":[
+        {
+            "name":"A",
+            "question":"Do you live in a flood prone area?"
+        },
+        {
+            "name":"B",
+            "question":"Has the government taken initiative?"
+        },
+        {
+            "name":"C",
+            "question":"Is your building flood resistant?"
+        },
+        {
+            "name":"D",
+            "question":"Are you prepared incase flood hits? Emergency Food/Emergency Contact Alert"
+        }
+
+    ],
+    "config":{
+        "A" : ["B", 0.1],
+        "B" : [0,"C"],
+        "C" : [0.3, "D"],
+        "D" : [0.5,1]
+    }
+}

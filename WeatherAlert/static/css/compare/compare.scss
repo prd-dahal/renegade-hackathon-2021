@@ -1,0 +1,36 @@
+$primary: #003691;
+$header: #ecf8ff;
+$features: #f0f9ff;
+$white: #ecf8ff;
+
+$body-text: #6c6c6b;
+html,
+body,
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Poppins;
+}
+
+.title {
+  font-size: 72px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.table {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  margin-top: 5rem;
+  text-align: left;
+
+  input {
+    border-radius: 0.5rem;
+    border: none;
+    outline: none;
+    border: 1px solid #e3e3e3;
+    padding: 0.5rem 1rem;
+  }
+}

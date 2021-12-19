@@ -1,0 +1,231 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing</title>
+
+    <!--CSS-->
+    <link rel="stylesheet" href="{% static 'css/landing/landing.css' %}" type="text/css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="{% static 'landing.js' %}" defer></script>
+  </head>
+  <body>
+    <header class="header__container">
+      <nav class="navbar">
+        <div class="logo">Weas</div>
+        <ul class="links">
+          <a href="{% url 'home' %}"><li class="link">Home</li>
+            {% if user.is_authenticated %}
+              <a href="{% url 'dashboard' %}"><li class="link">Dashboard</li>
+                <a href="{% url 'logout' %}"><li class="link"><button class="signup">Log Out</button></li></a>
+                {% else %}
+                 <a href="{% url 'login' %}"><li class="link"><button class="signup">Log in</button></li></a>
+            {% endif %}
+
+
+        </ul>
+      </nav>
+      <div>
+        <div class="img__left">
+          <h3 class="header__title">Weather Emergency Alert System</h3>
+
+          <p class="header__desc">
+            Alert Your Loved ones and Stay in Track of the Extreme Weather
+          </p>
+
+          <button class="header__button">Get Started -></button>
+        </div>
+        <img src='{% static "images/thunder.jpg" %}' class="img__right"></section>
+      </div>
+    </header>
+
+
+    <section class="about__app">
+      <div class="about__info">
+        <h5 class="section__title">About the App</h5>
+
+        <h3 class="section__large__text">
+          Stay on Track with weather conditions
+        </h3>
+
+        <p class="section__desc">
+          Our app keeps you connected with your loved ones, whether it is a
+          casual reminder or a Life Threatening Disaster.
+        </p>
+
+        <button class="button feature">Know More ></button>
+      </div>
+
+      <img src="{% static 'images/thunder.jpg' %}" alt="" />
+    </section>
+
+<section class="features__container">
+      <div class="cards__container">
+        <div class="features__card">
+          <img src="{% static 'icons/priority-high.svg' %}" alt="">
+
+
+          <h4 class="feature__title">Risk Assessment</h4>
+          <p class="feature__desc">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed facilis
+            dolorum necessitatibus illo. Maiores voluptates, accusantium ratione
+          </p>
+
+          <button class="feature__button">Know More ></button>
+        </div>
+
+        <div class="features__card second">
+                    <img src="{% static 'icons/brightness.svg' %}" alt="icon-brightness" >
+
+
+          <h4 class="feature__title">Get Weather Data</h4>
+          <p class="feature__desc">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed facilis
+            dolorum necessitatibus illo. Maiores voluptates, accusantium ratione
+          </p>
+
+          <button class="feature__button">Know More ></button>
+        </div>
+
+        <div class="features__card">
+         <img src="{% static 'icons/notifications.svg' %}" alt="">
+
+          <h4 class="feature__title">Alert Mechanism</h4>
+          <p class="feature__desc">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed facilis
+            dolorum necessitatibus illo. Maiores voluptates, accusantium ratione
+          </p>
+
+          <button class="feature__button">Know More ></button>
+        </div>
+
+        <div class="features__card">
+          <img src="{% static 'icons/location.svg' %}" alt="">
+
+          <h4 class="feature__title">Location Weather</h4>
+          <p class="feature__desc">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed facilis
+            dolorum necessitatibus illo. Maiores voluptates, accusantium ratione
+          </p>
+
+          <button class="feature__button">Know More ></button>
+        </div>
+      </div>
+
+      <div class="features__info">
+        <h5 class="section__title">FEATURES</h5>
+        <h3 class="section__large__text">Our Features include.</h3>
+
+        <p class="section__desc" style="margin-top: 2rem">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nostrum
+          doloremque placeat eaque iure at consequuntur sequi consectetur magnam
+          vel hic harum, atque autem non provident error minus incidunt aut
+        </p>
+
+        <button class="button feature">Know More ></button>
+      </div>
+    </section>
+
+   <section class="info__form">
+      <div class="contact__info">
+        <h5 class="section__title">CONTACT US</h5>
+        <h3 class="section__large__text">Let's Talk About Your Information</h3>
+
+        <p class="section__desc">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus
+          consectetur, quibusdam est voluptatibus totam natus et distinctio
+        </p>
+
+        <div class="socials__container">
+            <img src="{% static 'icons/instagram.svg' %}" alt="">
+            <img src="{% static 'icons/twitter.svg' %}" alt="">
+            <img src="{% static 'icons/youtube.svg' %}" alt="">
+        </div>
+      </div>
+
+      <div class="contact__form">
+        <div class="form__container">
+          <div class="form__group">
+            <label for="name" class="form__label">Name</label>
+            <input type="text" class="form__input" />
+          </div>
+
+          <div class="form__group">
+            <label for="email" class="form__label">Email</label>
+            <input type="email" class="form__input" />
+          </div>
+
+          <div class="form__group">
+            <label for="name" class="form__label">Description</label>
+            <textarea type="text" class="form__input" rows="5" ></textarea>
+          </div>
+
+          <button class="button primary">Contact Us</button>
+        </div>
+      </div>
+    </section>
+
+
+     <section class="signup__access">
+      <h3 class="access__title">Sign Up To Access Today</h3>
+       <a href="{% url 'register' %}"><button class="button primary">SignUp</button></a>>
+    </section>
+
+    <section class="footer">
+      <div class="footer__logo">
+       <h3>
+         Weas
+       </h3>
+       <p class="section__desc">abc@gmail.com</p>
+
+      </div>
+
+
+      <div class="footer__links">
+
+        <div class="footer__link">
+          <h4 class="link__title">
+            About Us.
+          </h4>
+          <ul>
+            <li class="footer__link">Home</li>
+            <li class="footer__link">Sign up</li>
+          </ul>
+        </div>
+
+      <div class="footer__link">
+        <h4 class="link__title">
+          Our Address.
+        </h4>
+        <ul>
+          <li >Kathmandu</li>
+          <li >Nepal</li>
+        </ul>
+
+        <!-- <span class="socials">
+          <span>fb</span>
+          <span>tw</span>
+          <span>yt</span>
+          <span>ig</span>
+        </span> -->
+      </div>
+
+    </div>
+    </section>
+
+    <footer class="footer__container">
+      2021 Copyright All Rights Reserved
+    </footer>
+  </body>
+</html>
+

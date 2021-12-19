@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="{% static 'css/main/main.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="{% static 'js/temp.js' %}" defer></script>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js" defer></script>
+  </head>
+  <body>
+    <main class="app__container">
+      <div class="sidebar">
+        <h2 class="sidebar__title">Dashboard</h2>
+
+        <ul class="sidebar__links">
+          <a style="color:white;text-decoration:none;" href="{% url 'home' %}"><li class="sidebar__link active">Home</li></a>
+          <li class="sidebar__link"><a style="color:white;text-decoration:none;" href="{% url 'FloodAssessment:machineLearning' %}">Risk Assesment</a></li>
+          <li class="sidebar__link"><a style="color:white;text-decoration:none;" href="{% url 'add-members' %}">Alert Groups</a></li>
+          <li class="sidebar__link"><a style="color:white;text-decoration:none;" href="{% url 'compare' %}">Weather</a></li>
+          <li class="sidebar__link"><a style="color:white;text-decoration:none;" href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+      </div>
+
+      <div class="content__container">
+        <div>
+          <h5>
+            Hi
+            <b> {{ user.first_name }} </b>,Welcome Back
+          </h5>
+
+          <div class="cards__container">
+            <div class="card">
+              <img class="placeholder__circle"  src="{%static 'images/assess.png'%}">
+              <a style="color:black;text-decoration:none;" href="{% url 'FloodAssessment:machineLearning' %}"><p class="card__title">Assess Flood Risk</p></a>
+            </div>
+            <div class="card">
+              <img class="placeholder__circle"  src="{%static 'images/alert.png'%}">
+              <a style="color:black;text-decoration:none;" href="{% url 'add-members' %}"><p class="card__title">Alert your loved ones</p></a>
+            </div>
+            <div class="card">
+              <img class="placeholder__circle"  src="{%static 'images/compare.png'%}">
+              <a style="color:black;text-decoration:none;" href="{% url 'compare' %}"><p class="card__title">Compare Weather</p></a>
+            </div>
+          </div>
+          <a style="color:black;text-decoration:none;" href="{% url 'FloodAssessment:machineLearning' %}"><button class="button__assess">Start Assessment</button></a>
+          
+
+           <div class="current__temp">
+            <h3>Current Weather</h3>
+
+            <div class="temp__info__container">
+              <div class="temp">
+                <span class="temp__num"></span>
+                <sup>o</sup>C
+              </div>
+              <div class="info">
+                <div class="inline-flex">
+                  <p class="info__title">Wind</p>
+                  <p class="info__data weather__wind"></p>
+                </div>
+
+                <div class="inline-flex">
+                  <p class="info__title">Wind Gust</p>
+                  <p class="info__data weather__prediction"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <div class="action__profile">
+            <img style="width:143px; height:143px; object-fit:cover; border-radius: 50%;" src="{{user.profile_picture.url}}" alt="" class="profile__image" />
+            <h4 class="profile__name">{{user.first_name}} {{user.last_name}}</h4>
+            <p class="profile__email">{{user.email}}</p>
+            <a style="color:black;text-decoration:none;" href="{% url 'user-profile' %}"><p class="profile__button">Update Profile</p></a>
+          </div>
+
+          <div class="action__profile">
+            <!-- <img src="" alt="" class="alert__image" /> -->
+            <h4 class="alert__title">Alert Group</h4>
+            <p class="alert__desc">
+              {% for member in members %}
+                {{member.name}}<br>
+              {% endfor %}
+            </p>
+
+            <button class="profile__button"><a style="color:white; text-decoration:none;" href="{% url 'add-members' %}">Add Member</a></button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
